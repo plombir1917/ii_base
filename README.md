@@ -1,4 +1,4 @@
-# journal
+# proper nutrition
 
 ## Build Setup
 
