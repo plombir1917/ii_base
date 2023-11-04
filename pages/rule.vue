@@ -3,12 +3,16 @@
     <section class="container">
       <div>
         <b-form @submit="onSubmit">
-          <b-form-group id="input-group-1" label="Ваш СЕО:" label-for="input-1">
+          <b-form-group
+            id="input-group-1"
+            label="Ваше правило:"
+            label-for="input-1"
+          >
             <b-form-input
               id="input-1"
-              v-model="form.ceo"
+              v-model="form.rule"
               type="text"
-              placeholder="СЕО"
+              placeholder="правило"
               required
             ></b-form-input>
           </b-form-group>
@@ -39,37 +43,26 @@
 export default {
   asyncData() {
     return {
-      items: [
-        {
-          base: 'ЕСЛИ З(отсутствует) И ~С(З,Р) ТО З(${this.form.ceo}) И С(З,Р)',
-        },
-      ],
-
+      items: [],
       concept: {
+        rule: '',
         base: '',
       },
     }
   },
   data() {
     return {
-      fields: [{ key: 'base', variant: 'primary' }],
+      fields: [{ key: 'rule', variant: 'primary' }],
       form: {
-        ceo: '',
+        rule: '',
       },
     }
   },
   methods: {
     onSubmit() {
-      if (this.form) {
-        if (this.form.ceo) {
-          this.concept.base = `ЕСЛИ З(отсутствует) И ~С(З,Р) ТО З(${this.form.ceo}) И С(З,Р)`
-          this.items = this.items.map((item) => this.concept)
-        } else {
-          throw new BadRequestException('Ошибка')
-        }
-      }
+      this.items.push(this.form)
       this.form = {
-        ceo: '',
+        rule: '',
       }
     },
   },
