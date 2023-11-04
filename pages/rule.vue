@@ -12,7 +12,7 @@
               id="input-1"
               v-model="form.rule"
               type="text"
-              placeholder="правило"
+              placeholder="Правило"
               required
             ></b-form-input>
           </b-form-group>
